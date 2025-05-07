@@ -12,24 +12,24 @@
                 <h3 class="text-lg font-medium">Book Information</h3>
             </div>
             <div class="p-6">
-                <form action="#" method="POST">
+                <form action="{{ route ('books.edit', $book) }}" method="POST">
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                         <div class="col-span-1 md:col-span-2">
                             <label for="nama_buku" class="mb-1 block text-sm font-medium text-gray-700">Nama Buku</label>
-                            <input type="text" id="nama_buku" name="nama_buku" required
+                            <input type="text" id="nama_buku" name="nama_buku" value="{{ old('name', $book->name) }}" required
                                 class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
 
                         <div>
                             <label for="penerbit" class="mb-1 block text-sm font-medium text-gray-700">Penerbit</label>
-                            <input type="text" id="penerbit" name="penerbit" required
+                            <input type="text" id="penerbit" name="penerbit" value="{{ old('publisher', $book->publisher) }}" required
                                 class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
 
                         <div>
                             <label for="tahun_terbit" class="mb-1 block text-sm font-medium text-gray-700">Tahun
                                 Terbit</label>
-                            <input type="number" id="tahun_terbit" name="tahun_terbit" min="1800" max="2099"
+                            <input type="number" id="tahun_terbit" name="tahun_terbit" min="1800" max="2099" value="{{ old('publication_year', $book->publication_year) }}"
                                 required
                                 class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
@@ -37,7 +37,7 @@
                         <div>
                             <label for="jumlah_halaman" class="mb-1 block text-sm font-medium text-gray-700">Jumlah
                                 Halaman</label>
-                            <input type="number" id="jumlah_halaman" name="jumlah_halaman" min="1" required
+                            <input type="number" id="jumlah_halaman" name="jumlah_halaman" min="1" value="{{ old('page_count', $book->page_count) }}" required
                                 class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500">
                         </div>
 
@@ -58,7 +58,7 @@
 
                         <div class="col-span-1 md:col-span-2">
                             <label for="deskripsi" class="mb-1 block text-sm font-medium text-gray-700">Deskripsi</label>
-                            <textarea id="deskripsi" name="deskripsi" rows="4" required
+                            <textarea id="deskripsi" name="deskripsi" rows="4" value="{{ old('description', $book->deskripsi) }}" required
                                 class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500"></textarea>
                         </div>
 

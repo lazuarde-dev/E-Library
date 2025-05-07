@@ -14,12 +14,30 @@
             <div class="border-b px-6 py-4">
                 <h3 class="text-lg font-medium">Book Details</h3>
             </div>
+            <div class="flex flex-wrap gap-2">
+                @if (Auth::user()->isAdmin())
+                    <a href="{{ route('books.edit', $book) }}"
+                        class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-blue-600">Edit</a>
+
+                    <form action="{{ route('books.destroy', $book) }}" method="POST" class="inline"
+                        onsubmit="return confirm ('Apakah anda yakin ingin menghapus buku ini')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                            class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 text-red-800">Hapus</button>
+                    </form>
+                @endif
+
+                <a href="{{ route('books.index') }}" class="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-md">Kembali</a>
+            </div>
+
+            //Books Detail Card
             <div class="p-6">
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                     <!-- Book Cover -->
                     <div class="flex flex-col items-center">
                         <div class="mb-4 h-80 w-56 overflow-hidden rounded-lg border bg-gray-100 shadow-sm">
-                            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?q=80&w=1974&auto=format&fit=crop"
+                            <img src="https://cdn.gramedia.com/uploads/picture_meta/2024/1/8/m5b3gwzj4fpaxwq7lk4b9s.jpg"
                                 alt="Book Cover" class="h-full w-full object-cover">
                         </div>
                         <div class="mt-2 flex gap-2">
@@ -38,25 +56,26 @@
 
                     <!-- Book Information -->
                     <div class="col-span-2">
-                        <h1 class="mb-2 text-3xl font-bold">To Kill a Mockingbird</h1>
+                        <h1 class="mb-2 text-3xl font-bold">Madilog</h1>
                         <div class="mb-4 flex flex-wrap gap-2">
-                            <span class="rounded-full bg-emerald-100 px-3 py-1 text-sm text-emerald-600">Fiction</span>
-                            <span class="rounded-full bg-purple-100 px-3 py-1 text-sm text-purple-600">Classic</span>
+                            <span class="rounded-full bg-emerald-100 px-3 py-1 text-sm text-emerald-600">filsafat</span>
+                            <span
+                                class="rounded-full bg-purple-100 px-3 py-1 text-sm text-purple-600">Marxisme-Leninisme</span>
                             <span class="rounded-full bg-amber-100 px-3 py-1 text-sm text-amber-600">Literature</span>
                         </div>
 
                         <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2">
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Penerbit</h3>
-                                <p class="text-gray-800">J.B. Lippincott & Co.</p>
+                                <p class="text-gray-800">Tan Malaka</p>
                             </div>
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Tahun Terbit</h3>
-                                <p class="text-gray-800">1960</p>
+                                <p class="text-gray-800">1943</p>
                             </div>
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Jumlah Halaman</h3>
-                                <p class="text-gray-800">281</p>
+                                <p class="text-gray-800">560</p>
                             </div>
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Status</h3>
@@ -72,23 +91,27 @@
                             </div>
                             <div>
                                 <h3 class="text-sm font-medium text-gray-500">Language</h3>
-                                <p class="text-gray-800">English</p>
+                                <p class="text-gray-800">Indonesia</p>
                             </div>
                         </div>
 
                         <div class="mb-6">
                             <h3 class="mb-2 text-sm font-medium text-gray-500">Deskripsi</h3>
                             <p class="text-gray-800">
-                                To Kill a Mockingbird is a novel by Harper Lee published in 1960. It was immediately
-                                successful, winning the Pulitzer Prize, and has become a classic of modern American
-                                literature. The plot and characters are loosely based on Lee's observations of her family,
-                                her neighbors and an event that occurred near her hometown of Monroeville, Alabama, in 1936,
-                                when she was ten.
+                                Madilog oleh Iljas Hussein (nama pena Tan Malaka), pertama kali diterbitkan pada tahun 1943,
+                                edisi pertama resmi tahun 1951, adalah magnum opus dari Tan Malaka, pahlawan nasional
+                                Indonesia dan merupakan karya paling berpengaruh dalam sejarah filsafat Indonesia modern.
+                                Madilog adalah akronim bahasa Indonesia yang merupakan kependekan dari Materialisme
+                                Dialektika Logika. Ini adalah sintesis materialisme dialektis Marxis dan logika Hegelian.
+                                Madilog ditulis di Batavia di mana Malaka bersembunyi selama pendudukan Jepang di Indonesia,
+                                menyamar sebagai tukang jahit.
                             </p>
                             <p class="mt-2 text-gray-800">
-                                The novel is renowned for its warmth and humor, despite dealing with serious issues of rape
-                                and racial inequality. The narrator's father, Atticus Finch, has served as a moral hero for
-                                many readers and as a model of integrity for lawyers.
+                                Buku Madilog memperkenalkan ide Madilog. Ini pertama kali diterbitkan sendiri pada tahun
+                                1943, menggunakan nama pena Iljas Hussein, dan panjangnya 568 halaman. Pada era pasca
+                                kemerdekaan, Madilog diterbitkan oleh Penerbit Widjaya, pada tahun 1951, di Jakarta. Madilog
+                                diterjemahkan ke dalam bahasa Belanda oleh Ted Sprague dan diterbitkan pada tahun 1962 di
+                                Den Haag.
                             </p>
                         </div>
 
@@ -107,7 +130,7 @@
                                     </thead>
                                     <tbody class="divide-y">
                                         <tr class="hover:bg-gray-50">
-                                            <td class="px-4 py-2">John Doe</td>
+                                            <td class="px-4 py-2">Raja Valdimir</td>
                                             <td class="px-4 py-2">15 Mar 2023</td>
                                             <td class="px-4 py-2">29 Mar 2023</td>
                                             <td class="px-4 py-2">
@@ -116,7 +139,7 @@
                                             </td>
                                         </tr>
                                         <tr class="hover:bg-gray-50">
-                                            <td class="px-4 py-2">Jane Smith</td>
+                                            <td class="px-4 py-2">Shira Lazuardi</td>
                                             <td class="px-4 py-2">02 Feb 2023</td>
                                             <td class="px-4 py-2">16 Feb 2023</td>
                                             <td class="px-4 py-2">
@@ -125,7 +148,7 @@
                                             </td>
                                         </tr>
                                         <tr class="hover:bg-gray-50">
-                                            <td class="px-4 py-2">Robert Johnson</td>
+                                            <td class="px-4 py-2">Zaky Yahvas</td>
                                             <td class="px-4 py-2">10 Jan 2023</td>
                                             <td class="px-4 py-2">24 Jan 2023</td>
                                             <td class="px-4 py-2">

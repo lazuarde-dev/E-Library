@@ -12,7 +12,8 @@
                 <h3 class="text-lg font-medium">Book Information</h3>
             </div>
             <div class="p-6">
-                <form action="#" method="POST">
+                <form action="{{ route ('books.store') }}" method="POST" class="space-y-4 sm:space-y-6">
+                    @csrf
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                         <div class="col-span-1 md:col-span-2">
                             <label for="nama_buku" class="mb-1 block text-sm font-medium text-gray-700">Nama Buku</label>

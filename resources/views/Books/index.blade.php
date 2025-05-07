@@ -19,12 +19,12 @@
                 <tbody class="divide-y">
                     <tr class="hover:bg-gray-50">
                         <td class="px-6 py-4">
-                            <div class="font-medium">The Great Gatsby</div>
+                            <div class="font-medium">Madilog</div>
                         </td>
-                        <td class="px-6 py-4">Scribner</td>
-                        <td class="max-w-xs truncate px-6 py-4">A novel about the American Dream and its corruption in
-                            the 1920s.</td>
-                        <td class="px-6 py-4">1925</td>
+                        <td class="px-6 py-4">Tan Malaka</td>
+                        <td class="max-w-xs truncate px-6 py-4">Madilog adalah akronim bahasa Indonesia yang merupakan
+                            kependekan dari Materialisme Dialektika Logika.</td>
+                        <td class="px-6 py-4">1943</td>
                         <td class="px-6 py-4">
                             <div class="flex space-x-2">
                                 <button
