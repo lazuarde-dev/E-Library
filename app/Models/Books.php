@@ -2,59 +2,40 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class Books extends Authenticatable
+class Books extends Model
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory;
 
     /**
-     * The attributes that are mass assignable.
+     * The table associated with the model.
      *
-     * @var list<string>
+     * @var string
+     */
+    protected $table = 'books';
+
+    /**
+     * The attributes that are mass assignable
+     * 
+     * @var array<string>
      */
     protected $fillable = [
-        'name',
-        'publisher',
+        'nama_buku',
+        'penerbit',
         'description',
-        'publication_year',
-        'page_count',
-        'role'
+        'tahun_penerbit',
+        'jumlah_halaman',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
+     * The attributes that should be cast
+     * 
+     * @var array<string, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
+    protected $casts = [
+        'tahun_penerbit' => 'integer',
+        'jumlah_halaman' => 'integer',
     ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
-    /**
-     * Check if user is an admin.
-     *
-     * @return bool
-     */ public function isAdmin(): bool
-    {
-        return $this->role === 'admin';
-    }
 }

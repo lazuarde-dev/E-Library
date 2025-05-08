@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama_buku');
             $table->string('penerbit');
             $table->text('description')->nullable();
-            $table->year('tahun_penerbit');
+            $table->integer('tahun_penerbit');
             $table->integer('jumlah_halaman');
             $table->timestamps();
         });

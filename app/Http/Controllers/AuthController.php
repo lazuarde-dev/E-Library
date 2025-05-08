@@ -31,7 +31,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->sesssion()->regenerate();
+            $request->session()->regenerate(); // Perbaiki typo sesssion -> session
 
             return redirect()->intended('dashboard');
         }
@@ -39,7 +39,6 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'The Provided Credentials Do Not Match Our Records',
         ])->onlyInput('email');
-
     }
 
     /**
@@ -57,14 +56,15 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'require|string|min:8|confirmed',
+            'password' => 'required|string|min:8|confirmed', // Perbaiki typo require -> required
+            'role' => 'required|in:admin,user',
         ]);
 
         $user = User::create([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'require|string|min:8|confirmed',
-            'role' => 'user', //Def Role User
+            'name' => $request->name, // Perbaiki - gunakan data request, bukan validasi rules
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
         ]);
 
         Auth::login($user);
@@ -75,7 +75,7 @@ class AuthController extends Controller
     /**
      * Handle Log Out Req.
      */
-    public function logout(request $request)
+    public function logout(Request $request)
     {
         Auth::logout();
 
